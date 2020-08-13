@@ -10,7 +10,7 @@ define(function () {
 
     externals.render = function(error, cards) {
         
-        console.log(cards);
+        //console.log(cards);
         //console.log(error);
         if(error) {
             renderError(error);
@@ -19,25 +19,26 @@ define(function () {
       internals.renderButton();
     
       if(cards) {
-        internals.elements.card = '';
+        internals.renderCardHolder(cards);
+        //console.log(cards);
+            //console.log(element);
+        }; 
+    };  
+
+    internals.renderCardHolder = function(cards) {
+        if(internals.elements.cardHolder) {
+            internals.elements.cardHolder.empty();
+        }
+
+        internals.elements.cardHolder = $(internals.createCardHolder())
+        internals.elements.app.append(internals.elements.cardHolder);
+
+
         cards.forEach(function(element) {
-            internals.renderCard(element);
-        });   
-    }
-    };
-   
-    internals.renderCard = function(element) {
-
-        //console.log(internals.elements.card[element.cardName]);
-        
-/*
-        if(internals.elements.card[element.cardName]) {
-            internals.elements.card[element.cardName].empty();
-        }*/
-
-        internals.elements.card[element.cardName] = $(internals.createCard(element))
-        internals.elements.app.append(internals.elements.card[element.cardName]);
-    };
+            
+            internals.elements.cardHolder.append(internals.createCard(element));
+    })
+};
 
     internals.renderButton = function() {
         if(internals.elements.button) {
@@ -59,6 +60,10 @@ define(function () {
         internals.handlers[eventName] = handler;
     }
 
+    internals.createCardHolder = function() {
+        return ('<div id="cardHolder" class="container row"></div>')
+    }
+
     //html
     internals.createButton = function() {
         return ('<div class="container"><div class="row"><button type="button" class="btn btn-outline-dark">Generate a set of random Cards!</button></div>');
@@ -66,11 +71,11 @@ define(function () {
 
     internals.createCard = function(element) {
         //console.log(card + 'tas aqui?');
-        return ('<div class="container" style="width: 18rem;">' + 
+        return ('<div><div class="col-4>"<div class="card" style="width: 18rem; margin: 15px;">' + 
         '<img class="card-img-top" src=' + element.image + ' alt="image magic">' +
         '<div class="card-body">' +
         '<a href="#" class="btn btn-dark">View Details</a>'+
-        '</div></div>');
+        '</div></div></div></div>');
     };
 
     internals.createError = function() {

@@ -14,9 +14,9 @@ define(function () {
       type: 'GET',
       dataType: 'json',
       success: function (results) {
-        console.log(internals.cards)
-        if(internals.cards.length === 5) { 
-          console.log(internals.cards)
+        //console.log(internals.cards)
+        if(internals.cards.length === 6) { 
+          //console.log(internals.cards)
           viewRender(null, internals.cards);
           return;
         }
@@ -42,7 +42,7 @@ define(function () {
   };
 
   internals.loadCards = function (viewRender) {
-      for (let index = 0; index < 6; index++) {
+      for (let index = 0; index <= 6; index++) {
         internals.loadCard(viewRender)
         
       }
