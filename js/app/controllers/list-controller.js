@@ -6,6 +6,7 @@ define(['services/card-service', 'views/list-view'], function(cardService, listV
         internals.bindEventHandlers();
 
         cardService.loadRandomCards(listView.render);
+        //listView.render();
     };
 
     internals.bindEventHandlers = function () {

@@ -9,8 +9,10 @@ define(function () {
     internals.elements.app = $('#app');
 
     externals.render = function(error, cards) {
+        
+        console.log(cards);
 
-        console.log(error);
+        //console.log(error);
         if(error) {
             renderError(error);
         }
@@ -18,7 +20,6 @@ define(function () {
       internals.renderButton();
       
         if(cards) {   
-            console.log(cards);
             internals.renderCard(cards);
         }
     };
@@ -59,7 +60,7 @@ define(function () {
     }; 
 
     internals.createCard = function(cards) {
-        console.log(cards);
+        //console.log(cards);
         return ('<div class="card" style="width: 18rem;">' + 
         '<img class="card-img-top" src="' + cards.image + '" alt="image magic">' +
         '<div class="card-body">' +
