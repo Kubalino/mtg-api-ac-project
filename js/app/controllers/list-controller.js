@@ -4,7 +4,8 @@ define(['services/card-service', 'views/list-view'], function(cardService, listV
 
     externals.start = function () {
         internals.bindEventHandlers();
-        cardService.loadCard(listView.render);
+
+        cardService.loadRandomCards(listView.render);
     };
 
     internals.bindEventHandlers = function () {
