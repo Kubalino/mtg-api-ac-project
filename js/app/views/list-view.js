@@ -11,27 +11,32 @@ define(function () {
     externals.render = function(error, cards) {
         
         console.log(cards);
-
         //console.log(error);
         if(error) {
             renderError(error);
         }
-       
+    
       internals.renderButton();
-      
-        if(cards) {   
-            internals.renderCard(cards);
-        }
+    
+      if(cards) {
+        internals.elements.card = '';
+        cards.forEach(function(element) {
+            internals.renderCard(element);
+        });   
+    }
     };
    
-    internals.renderCard = function(cards) {
+    internals.renderCard = function(element) {
 
-        if(internals.elements.card) {
-            internals.elements.card.empty();
-        }
+        //console.log(internals.elements.card[element.cardName]);
+        
+/*
+        if(internals.elements.card[element.cardName]) {
+            internals.elements.card[element.cardName].empty();
+        }*/
 
-        internals.elements.card = $(internals.createCard(cards));
-        internals.elements.app.append(internals.elements.card);
+        internals.elements.card[element.cardName] = $(internals.createCard(element))
+        internals.elements.app.append(internals.elements.card[element.cardName]);
     };
 
     internals.renderButton = function() {
@@ -56,22 +61,28 @@ define(function () {
 
     //html
     internals.createButton = function() {
-        return ('<div class="container"><div class="row"><button type="button" class="btn btn-outline-dark">Discover your Magic The Gathering of the day!</button></div>');
+        return ('<div class="container"><div class="row"><button type="button" class="btn btn-outline-dark">Generate a set of random Cards!</button></div>');
     }; 
 
-    internals.createCard = function(cards) {
-        //console.log(cards);
-        return ('<div class="card" style="width: 18rem;">' + 
-        '<img class="card-img-top" src="' + cards.image + '" alt="image magic">' +
+    internals.createCard = function(element) {
+        //console.log(card + 'tas aqui?');
+        return ('<div class="container" style="width: 18rem;">' + 
+        '<img class="card-img-top" src=' + element.image + ' alt="image magic">' +
         '<div class="card-body">' +
         '<a href="#" class="btn btn-dark">View Details</a>'+
         '</div></div>');
     };
 
     internals.createError = function() {
-        console.log('Error Found!');
         return ('<span class="badge badge-secundary">Error fetching Data!</span>')
     }
 
     return externals;
 })
+
+/*
+1º - renderCard not working;
+2º - set interval nas requests à api;
+3º - fazer o git merge em segurança;
+4º - centrar o button com o bootstrap
+*/

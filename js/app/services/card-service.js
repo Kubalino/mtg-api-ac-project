@@ -7,17 +7,21 @@ define(function () {
 
   internals.cards = [];
 
-  internals.loadCard = function () {
+  internals.loadCard = function (viewRender) {
 
     $.ajax({
       url: 'https://api.scryfall.com/cards/random',
       type: 'GET',
       dataType: 'json',
       success: function (results) {
+        console.log(internals.cards)
+        if(internals.cards.length === 5) { 
+          console.log(internals.cards)
+          viewRender(null, internals.cards);
+          return;
+        }
 
-        //console.log(results);
-
-        internals.cards.push(internals.card = {
+        var card = {
           cardName: results.name,
           image: results.image_uris.png,
           artist: results.artist,
@@ -26,26 +30,30 @@ define(function () {
           type: results.type_line,
           releaseDate: results.released_at,
           flavorText: results.flavor_text,
-        });
+        };
 
-        //console.log(internals.cards);
-        //cb(null, internals.cards);
-
+        internals.cards.push(card);
+        //internals.loadCard(viewRender);
+        
       },
       error: function (request, statusText, httpError) { cb(httpError || statusText) }
  
     });
   };
 
-  externals.loadRandomCards = function (cb) {
-    
-    console.log(internals.cards);
-
-    for (var index = 0; index < 6; index++) {
-      internals.loadCard();
-    }
-    cb(null, internals.cards);
+  internals.loadCards = function (viewRender) {
+      for (let index = 0; index < 6; index++) {
+        internals.loadCard(viewRender)
+        
+      }
   }
 
+  externals.loadRandomCards = function (viewRender) {
+    
+    internals.cards = [];
+    internals.loadCards(viewRender);
+
+  }
   return externals;
+
 });
