@@ -14,7 +14,8 @@ define(function () {
       type: 'GET',
       dataType: 'json',
       success: function (results) {
-        //console.log(internals.cards)
+        console.log(results);
+        console.log(internals.cards)
         if(internals.cards.length === 6) { 
           //console.log(internals.cards)
           viewRender(null, internals.cards);

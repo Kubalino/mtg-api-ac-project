@@ -1,14 +1,27 @@
 body {
     font-family: 'Crimson-Text', serif;
-    background: gray;
+    background: url(/img/mtg_background2.png) no-repeat center
+    center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-.h1 {
+.title, .h1 {
+    color: #ffffff;
     text-align: center;
-    display: flex;
 }
 
 
+.container{
+    justify-content: center !important;
+};
 
+
+.btn {
+    padding: 20px;
+    justify-content: flex-start;
+}
 
 

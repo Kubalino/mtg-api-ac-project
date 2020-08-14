@@ -16,13 +16,15 @@ define(function () {
             renderError(error);
         }
     
-      internals.renderButton();
+      
     
       if(cards) {
         internals.renderCardHolder(cards);
         //console.log(cards);
             //console.log(element);
-        }; 
+        };
+
+    internals.renderButton();
     };  
 
     internals.renderCardHolder = function(cards) {
@@ -66,7 +68,7 @@ define(function () {
 
     //html
     internals.createButton = function() {
-        return ('<div class="container"><div class="row"><button type="button" class="btn btn-outline-dark">Generate a set of random Cards!</button></div>');
+        return ('<div class="container"><div class="row"><button type="button" class="btn btn-dark">Generate a set of random Cards!</button></div>');
     }; 
 
     internals.createCard = function(element) {
