@@ -16,15 +16,14 @@ define(function () {
             renderError(error);
         }
     
-      
-    
-      if(cards) {
-        internals.renderCardHolder(cards);
-        //console.log(cards);
+        if(cards) {
+            internals.renderCardHolder(cards);
+            //console.log(cards);
             //console.log(element);
         };
 
-    internals.renderButton();
+        internals.renderButton();
+        internals.renderSearch();
     };  
 
     internals.renderCardHolder = function(cards) {
@@ -57,23 +56,35 @@ define(function () {
         internals.elements.app.append(internals.elements.error);
     }
 
+    internals.renderSearch = function(search) {
+        if(internals.elements.search) {
+            return;
+        }
+
+        internals.elements.search = $(internals.createSearch());
+        internals.elements.app.append(internals.elements.search);
+    }
+
      //fazer bind da string que vem do controller e da função handler correspondente, para guardar nos elements.handlers
      externals.bind = function (eventName, handler) {
         internals.handlers[eventName] = handler;
+    }
+
+    internals.createHeader = function() {
+        `<div id="header" class="container row"></div>`
     }
 
     internals.createCardHolder = function() {
         return ('<div id="cardHolder" class="container row"></div>')
     }
 
-    //html
     internals.createButton = function() {
         return ('<div class="container"><div class="row"><button type="button" class="btn btn-dark">Generate a set of random Cards!</button></div>');
     }; 
 
     internals.createCard = function(element) {
         //console.log(card + 'tas aqui?');
-        return ('<div><div class="col-4>"<div class="card" style="width: 18rem; margin: 15px;">' + 
+        return ('<div><div class="col-4><div class="card" style="width: 18rem; margin: 15px;">' + 
         '<img class="card-img-top" src=' + element.image + ' alt="image magic">' +
         '<div class="card-body">' +
         '<a href="#" class="btn btn-dark">View Details</a>'+
@@ -84,12 +95,14 @@ define(function () {
         return ('<span class="badge badge-secundary">Error fetching Data!</span>')
     }
 
+    internals.createSearch = function() {
+       return (`<div class="container col-4>
+                <form class="form-inline">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                aria-label="Search">
+                </form></div>`)
+    }
+
     return externals;
 })
-
-/*
-1º - renderCard not working;
-2º - set interval nas requests à api;
-3º - fazer o git merge em segurança;
-4º - centrar o button com o bootstrap
-*/

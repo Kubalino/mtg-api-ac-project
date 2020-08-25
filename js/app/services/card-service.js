@@ -7,20 +7,18 @@ define(function () {
 
   internals.cards = [];
 
-  internals.loadCard = function (viewRender) {
+  internals.loadRandomCard = function (viewRender) {
 
     $.ajax({
       url: 'https://api.scryfall.com/cards/random',
       type: 'GET',
       dataType: 'json',
       success: function (results) {
-        console.log(results);
-        console.log(internals.cards)
-        if(internals.cards.length === 6) { 
-          //console.log(internals.cards)
-          viewRender(null, internals.cards);
-          return;
-        }
+        
+        //console.log(results);
+        //console.log(internals.cards)
+        
+        viewRender(null, internals.cards);
 
         var card = {
           cardName: results.name,
@@ -34,27 +32,25 @@ define(function () {
         };
 
         internals.cards.push(card);
-        //internals.loadCard(viewRender);
-        
       },
       error: function (request, statusText, httpError) { cb(httpError || statusText) }
  
     });
   };
 
-  internals.loadCards = function (viewRender) {
-      for (let index = 0; index <= 6; index++) {
-        internals.loadCard(viewRender)
-        
-      }
+  internals.transform = function() {
+      
+
   }
 
-  externals.loadRandomCards = function (viewRender) {
-    
+  externals.loadCards = function (viewRender, numberOfCards) {
+
     internals.cards = [];
-    internals.loadCards(viewRender);
-
+    for (let index = 0; index <= numberOfCards; index++) {
+      internals.loadRandomCard(viewRender)
+    }
   }
+
   return externals;
 
 });

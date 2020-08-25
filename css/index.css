@@ -24,4 +24,7 @@ body {
     justify-content: flex-start;
 }
 
+.search-bar {
+    padding-top: 20px;
+}
 
