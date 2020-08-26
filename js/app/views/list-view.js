@@ -22,8 +22,7 @@ define(function () {
             //console.log(element);
         };
 
-        internals.renderButton();
-        internals.renderSearch();
+        internals.renderHeader();
     };  
 
     internals.renderCardHolder = function(cards) {
@@ -38,8 +37,18 @@ define(function () {
         cards.forEach(function(element) {
             
             internals.elements.cardHolder.append(internals.createCard(element));
-    })
-};
+        })
+    };
+
+    internals.renderHeader = function() {
+        internals.elements.header = $(internals.createHeader());
+        internals.elements.app.append(internals.elements.header);
+
+        //internals.elements.header.append(internals.createButton());
+        //internals.elements.header.append(internals.createSearch());
+        internals.renderButton();
+        internals.renderSearch();
+    }
 
     internals.renderButton = function() {
         if(internals.elements.button) {
@@ -48,13 +57,8 @@ define(function () {
         internals.elements.button = $(internals.createButton());
         //a view é que lida com o button.click mas a função(ação) é do controller
         internals.elements.button.click(internals.handlers['buttonClick']);
-        internals.elements.app.append(internals.elements.button);
+        internals.elements.header.append(internals.elements.button);
     };
-
-    internals.renderError = function(error) {
-        internals.elements.error = $(internals.createError(error));
-        internals.elements.app.append(internals.elements.error);
-    }
 
     internals.renderSearch = function(search) {
         if(internals.elements.search) {
@@ -62,7 +66,12 @@ define(function () {
         }
 
         internals.elements.search = $(internals.createSearch());
-        internals.elements.app.append(internals.elements.search);
+        internals.elements.header.append(internals.elements.search);
+    }
+
+    internals.renderError = function(error) {
+        internals.elements.error = $(internals.createError(error));
+        internals.elements.app.append(internals.elements.error);
     }
 
      //fazer bind da string que vem do controller e da função handler correspondente, para guardar nos elements.handlers
@@ -71,7 +80,7 @@ define(function () {
     }
 
     internals.createHeader = function() {
-        `<div id="header" class="container row"></div>`
+        return `<div id="header" class="container row"></div>`
     }
 
     internals.createCardHolder = function() {
@@ -79,7 +88,7 @@ define(function () {
     }
 
     internals.createButton = function() {
-        return ('<div class="container"><div class="row"><button type="button" class="btn btn-dark">Generate a set of random Cards!</button></div>');
+        return ('<div class="col-4"><button type="button" class="btn btn-dark">Generate a set of random Cards!</button></div>');
     }; 
 
     internals.createCard = function(element) {
@@ -96,8 +105,7 @@ define(function () {
     }
 
     internals.createSearch = function() {
-       return (`<div class="container col-4>
-                <form class="form-inline">
+       return (`<div class="col-4"><form class="form-inline">
                 <i class="fas fa-search" aria-hidden="true"></i>
                 <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
                 aria-label="Search">
