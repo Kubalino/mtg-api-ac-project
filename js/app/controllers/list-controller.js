@@ -16,5 +16,7 @@ define(['services/card-service', 'views/list-view'], function(cardService, listV
         cardService.loadCards(listView.render, 6);
     }
 
+    
+
     return externals;
 });
