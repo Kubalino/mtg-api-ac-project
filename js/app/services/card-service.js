@@ -43,12 +43,15 @@ define(function () {
 
   }
 
-  externals.loadCards = function (viewRender, numberOfCards) {
+  externals.loadCards = function (viewRender, numberCards) {
 
     internals.cards = [];
-    for (let index = 0; index <= numberOfCards; index++) {
+
+    for(let i = 0; i <= numberCards; i++) {
+    
       internals.loadRandomCard(viewRender)
     }
+  
   }
 
   return externals;

@@ -16,15 +16,17 @@ body {
 
 .container{
     justify-content: center !important;
+    padding: 10px;
 };
 
 
 .btn {
-    padding: 20px;
     justify-content: flex-start;
 }
 
-.search-bar {
-    padding-top: 20px;
+.col-4 {
+    display: flex;
+    justify-content: center;
 }
+
 
