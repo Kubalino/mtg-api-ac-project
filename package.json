@@ -1,0 +1,29 @@
+{
+  "name": "mtg-api-ac-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {
+    "gh-pages": "^3.1.0",
+    "http-server": "^0.12.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kubalino/mtg-api-ac-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kubalino/mtg-api-ac-project/issues"
+  },
+  "homepage": "https://Kubalino.github.io/mtg-api-ac-project"
+}

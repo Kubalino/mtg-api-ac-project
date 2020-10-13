@@ -82,10 +82,9 @@ define(function () {
 
     internals.createCard = function(element) {
         //console.log(card + 'tas aqui?');
-        return ('<div><div class="col-4><div class="card" style="width: 18rem; margin: 15px;">' + 
+        return ('<div><div class="card" style="width: 18rem; margin: 15px; background-color: black;">' + 
         '<img class="card-img-top" src=' + element.image + ' alt="image magic">' +
-        '<div class="card-body">' +
-        '</div></div></div>');
+        '</div></div>');
     };
 
     internals.createError = function() {
