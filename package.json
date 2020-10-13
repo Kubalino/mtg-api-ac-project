@@ -13,7 +13,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages-deploy"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,5 @@
   "bugs": {
     "url": "https://github.com/Kubalino/mtg-api-ac-project/issues"
   },
-  "homepage": "https://Kubalino.github.io/mtg-api-ac-project"
+  "homepage": "https://kubalino.github.io/mtg-api-ac-project"
 }
